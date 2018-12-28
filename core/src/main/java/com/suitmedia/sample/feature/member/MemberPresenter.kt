@@ -8,7 +8,7 @@ import com.suitmedia.sample.BaseApplication
 import com.suitmedia.sample.core.R
 import com.suitmedia.sample.base.presenter.BasePresenter
 import com.suitmedia.sample.data.api.APIService
-import com.suitmedia.sample.data.localdb.RealmHelper
+//import com.suitmedia.sample.data.localdb.RealmHelper
 import com.suitmedia.sample.data.prefs.DataConstant
 import com.suitmedia.sample.data.prefs.SuitPreferences
 import com.suitmedia.sample.helper.AppStatus
@@ -29,23 +29,12 @@ class MemberPresenter(
     @Inject
     lateinit var apiService: APIService
     private var mvpView: MemberView? = null
-    private var mRealm: RealmHelper<User>? = RealmHelper()
     private var mCompositeDisposable: CompositeDisposable? = CompositeDisposable()
 
     init {
         BaseApplication.applicationComponent.inject(this)
     }
 
-    fun getMemberCache() {
-        var data: List<User>? = SuitPreferences.instance()?.getObjectsList(DataConstant.KEY_MEMBER_CACHE, User::class.java)
-
-        /* from Realm Model */
-        // val data: List<User>? = mRealm?.getData(User())
-
-        if(data == null) data = emptyList()
-
-        mvpView?.onMemberCacheLoaded(data)
-    }
 
     fun getMember(currentPage: Int?) {
         mCompositeDisposable?.add(
@@ -91,13 +80,13 @@ class MemberPresenter(
         if (data != null && data.isNotEmpty()) {
             if (currentPage == 1) {
                 // remove current realm data
-                mRealm?.deleteData(User())
+//                mRealm?.deleteData(User())
                 // save array object to preference for pre view data loaded
                 SuitPreferences.instance()?.saveObjectsList(DataConstant.KEY_MEMBER_CACHE, data)
             }
 
             // save to realm
-            mRealm?.saveList(data)
+//            mRealm?.saveList(data)
         }
     }
 

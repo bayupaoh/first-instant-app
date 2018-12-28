@@ -3,7 +3,7 @@ apply plugin: 'com.android.feature'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'realm-android'
+//apply plugin: 'realm-android'
 
 android {
 
@@ -23,16 +23,16 @@ android {
 
     buildTypes {
         release {
-            shrinkResources false
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", 'BASE_URL', "\"https://reqres.in/api/\""
             buildConfigField "String", 'ENCRYPT_KEY', "\"su!tmobilE777\""
         }
 
         debug{
-            shrinkResources false
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", 'BASE_URL', "\"https://reqres.in/api/\""
             buildConfigField "String", 'ENCRYPT_KEY', "\"su!tmobilE777\""

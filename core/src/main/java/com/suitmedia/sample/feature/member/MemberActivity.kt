@@ -55,7 +55,6 @@ class MemberActivity : BaseActivity(),
     private fun setupPresenter() {
         memberPresenter = MemberPresenter(this, shimmerContainer)
         memberPresenter?.attachView(this)
-        memberPresenter?.getMemberCache()
         memberPresenter?.getMember(currentPage)
     }
 
